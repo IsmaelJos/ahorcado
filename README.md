@@ -1,1 +1,3 @@
 # ahorcado
+
+![](images/mock.png)

@@ -9,12 +9,12 @@ final class Game {
     private array $state;
 
 
-    public function __construct(
-        string $word, 
-        int $maxAttempts = 6, 
-        ?array $state = null,
-        array $usedLetters 
-    ) {}
+    public function __construct(string $word, int $maxAttempts = 6, ?array $state = null, array $usedLetters ) {
+        $this->word = $word;
+        $this->maxAttempts = $maxAttempts;
+        $this->state = $state;
+        $this->usedLetters = $usedLetters;
+    }
 
     public static function guessLetter(string $letter): void{
         if (isset($_POST['letra'])) {
@@ -37,7 +37,7 @@ final class Game {
     }
 
     public function getAttemptsLeft(): int {
-        $_SESSION['intentos'];
+        return $_SESSION['intentos'];
     }
 
     public function getUsedLetters(): array{

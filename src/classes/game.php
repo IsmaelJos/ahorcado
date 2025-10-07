@@ -2,18 +2,27 @@
 
 declare(strict_types=1);
 
+namespace src\classes\game;
+
 final class Game {
     private string $word;
     private int $maxAttempts;
     private array $usedLetters;
-    private array $state;
+    private int $attemptsLeft;
 
+    public function __construct(string $word, int $maxAttempts = 6, ?array $state = null) {
+        if($state){
+            $this->word = $state["word"];
+            $this->maxAttempts = $state["maxAttempts"];
+            $this->usedLetters = $state["usedLetters"];
+            $this->attemptsLeft = $state["attemptsLeft"];
+        }else{
+            $this->word = $word;
+            $this->maxAttempts = $maxAttempts;
+            $this->attemptsLeft = $maxAttempts;
+            $this->usedLetters = [];
+        }
 
-    public function __construct(string $word, int $maxAttempts = 6, ?array $state = null, array $usedLetters ) {
-        $this->word = $word;
-        $this->maxAttempts = $maxAttempts;
-        $this->state = $state;
-        $this->usedLetters = $usedLetters;
     }
 
     public static function guessLetter(string $letter): void{
@@ -63,7 +72,8 @@ final class Game {
     }
 
     public function toState(): array{
-
+        
+        return array(this->attemptsLeft, this->usedLetters);
     }
 
 }

@@ -46,7 +46,7 @@ final class Game {
     }
 
     public function getAttemptsLeft(): int {
-        return $_SESSION['intentos'];
+        return $this->attemptsLeft;
     }
 
     public function getUsedLetters(): array{
@@ -72,8 +72,7 @@ final class Game {
     }
 
     public function toState(): array{
-        
-        return array(this->attemptsLeft, this->usedLetters);
+        return array($this->attemptsLeft, $this->usedLetters);
     }
 
 }
